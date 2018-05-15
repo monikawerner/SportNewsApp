@@ -39,17 +39,18 @@ public final class QueryUtils {
         try {
 
             JSONObject baseJsonResponse = new JSONObject(SAMPLE_JSON_RESPONSE);
-            JSONArray newsArray = baseJsonResponse.getJSONArray("results");
+            JSONObject newsObject = baseJsonResponse.getJSONObject("response");
+            JSONArray newsArray = newsObject.getJSONArray("results");
 
             for(int i = 0; i < newsArray.length(); i++) {
                 JSONObject currentNews = newsArray.getJSONObject(i);
-                String title = currentNews.getString("webTitle");
+                String heading = currentNews.getString("webTitle");
                 String category = currentNews.getString("sectionName");
-                String author = currentNews.getString("webTitle");
                 String date = currentNews.getString("webPublicationDate");
+                String url = currentNews.getString("webUrl");
 
-                News newsObject = new News(title, category, author, date);
-                news.add(newsObject);
+                News sportNewsObject = new News(heading, category, date, url);
+                news.add(sportNewsObject);
             }
 
 

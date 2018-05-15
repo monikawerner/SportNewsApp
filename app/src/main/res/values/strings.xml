@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">SportNewsApp</string>
+    <string name="heading_separator">|</string>
 </resources>

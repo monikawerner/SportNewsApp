@@ -1,18 +1,21 @@
 package com.example.android.sportnewsapp;
 
+import android.util.Log;
+import android.widget.ArrayAdapter;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
-
 import java.util.List;
 
 public class NewsAdapter extends ArrayAdapter<News> {
+
+    private static final String HEADING_SEPARATOR = "\\|";
+    String headingTitle;
+    String headingAuthor;
 
     /** Constructs a new NewsAdapter
      *
@@ -40,6 +43,20 @@ public class NewsAdapter extends ArrayAdapter<News> {
          */
         News currentNews = getItem(position);
 
+        String heading = currentNews.getNewsHeading();
+
+        if (heading.contains(HEADING_SEPARATOR)) {
+            Log.v("my_tag", "there is string separator");
+            String[] parts = heading.split(HEADING_SEPARATOR);
+            headingTitle = parts[0];
+            headingAuthor = parts[1];
+        } else {
+            Log.v("my_tag", "there is no string separator found");
+            headingTitle = heading;
+            headingAuthor = null;
+        }
+
+
         /**
          * Find the TextView in the news_list_item.xml layout
          */
@@ -47,7 +64,16 @@ public class NewsAdapter extends ArrayAdapter<News> {
         /**
          * Get the title from the current News object and set this value on the title TextView
          */
-        title.setText(currentNews.getNewsTitle());
+        title.setText(headingTitle);
+
+        /**
+         * Find the TextView in the news_list_item.xml layout
+         */
+        TextView author = (TextView) listItemView.findViewById(R.id.author);
+        /**
+         * Get the author from the current News object and set this value on the author TextView
+         */
+        author.setText(headingAuthor);
 
         /**
          * Find the TextView in the news_list_item.xml layout
@@ -58,25 +84,16 @@ public class NewsAdapter extends ArrayAdapter<News> {
          */
         category.setText(currentNews.getNewsCategory());
 
-        /**
-         * Find the TextView in the news_list_item.xml layout
-         */
-        TextView author = (TextView) listItemView.findViewById(R.id.author);
-        /**
-         * Get the author from the current News object and set this value on the author TextView
-         */
-        author.setText(currentNews.getNewsAuthor());
-
-        /**
-         * Find the TextView in the news_list_item.xml layout
-         */
+        /** Find the TextView in the news_list_item.xml layout */
         TextView date = (TextView) listItemView.findViewById(R.id.date);
-        /**
-         * Get the date from the current News object and set this value on the date TextView
-         */
+
+
+        /** Display the date of the current news in that TextView */
         date.setText(currentNews.getNewsDate());
 
         /** Return the list item view */
         return listItemView;
     }
-}
+
+    }
+
