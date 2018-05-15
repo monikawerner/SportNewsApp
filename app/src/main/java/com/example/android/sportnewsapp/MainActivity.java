@@ -14,11 +14,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Create a fake list of earthquake locations.
-        ArrayList<News> news = new ArrayList<>();
-        news.add(new News("Gol", "Football", "Monika", "May 13, 2018"));
-        news.add(new News("Ball", "Tennis", "Ania", "May 12, 2018"));
-        news.add(new News("Not too much", "Volleyball", "Nina", "May 7, 2018"));
+        // Get the list of news from QueryUtils.
+        ArrayList<News> news = QueryUtils.extractNews();
 
 
         // Find a reference to the {@link ListView} in the layout
