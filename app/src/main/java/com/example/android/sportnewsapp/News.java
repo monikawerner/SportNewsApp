@@ -6,6 +6,9 @@ public class News {
     /** Title of the news */
     private String mNewsHeading;
 
+    /** Author of the news */
+    private String mNewsAuthor;
+
     /** Category of the news */
     private String mNewsCategory;
 
@@ -17,11 +20,14 @@ public class News {
 
     /** Constructs a new News object
      * @param newsHeading is the title of news
+     * @param newsAuthor is the author of the news
      * @param newsCategory is the category of news
      * @param newsDate is the date of publication the news
+     * @param newsUrl is the website of the news
      */
-    public News(String newsHeading, String newsCategory, String newsDate, String newsUrl) {
+    public News(String newsHeading, String newsAuthor, String newsCategory, String newsDate, String newsUrl) {
         mNewsHeading = newsHeading;
+        mNewsAuthor = newsAuthor;
         mNewsCategory = newsCategory;
         mNewsDate = newsDate;
         mNewsUrl = newsUrl;
@@ -29,6 +35,9 @@ public class News {
 
     /** Returns the title of the news */
     public String getNewsHeading() {return mNewsHeading;}
+
+    /** Returns the author of the news */
+    public String getNewsAuthor() {return mNewsAuthor;}
 
     /** Returns the category of the news */
     public String getNewsCategory() {return mNewsCategory;}

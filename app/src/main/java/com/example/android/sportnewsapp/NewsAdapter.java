@@ -13,20 +13,24 @@ import java.util.List;
 
 public class NewsAdapter extends ArrayAdapter<News> {
 
-    private static final String HEADING_SEPARATOR = "\\|";
-    String headingTitle;
-    String headingAuthor;
 
-    /** Constructs a new NewsAdapter
+    private static final String DATE_SEPARATOR = "T";
+    String formattedDate;
+
+
+    /**
+     * Constructs a new NewsAdapter
      *
      * @param context of the app
-     * @param news is the list of news - data source of adapter
+     * @param news    is the list of news - data source of adapter
      */
     public NewsAdapter(Context context, List<News> news) {
         super(context, 0, news);
     }
 
-    /** Returns a list item view that displays information of news at the given position in the list */
+    /**
+     * Returns a list item view that displays information of news at the given position in the list
+     */
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -43,20 +47,6 @@ public class NewsAdapter extends ArrayAdapter<News> {
          */
         News currentNews = getItem(position);
 
-        String heading = currentNews.getNewsHeading();
-
-        if (heading.contains(HEADING_SEPARATOR)) {
-            Log.v("my_tag", "there is string separator");
-            String[] parts = heading.split(HEADING_SEPARATOR);
-            headingTitle = parts[0];
-            headingAuthor = parts[1];
-        } else {
-            Log.v("my_tag", "there is no string separator found");
-            headingTitle = heading;
-            headingAuthor = null;
-        }
-
-
         /**
          * Find the TextView in the news_list_item.xml layout
          */
@@ -64,7 +54,7 @@ public class NewsAdapter extends ArrayAdapter<News> {
         /**
          * Get the title from the current News object and set this value on the title TextView
          */
-        title.setText(headingTitle);
+        title.setText(currentNews.getNewsHeading());
 
         /**
          * Find the TextView in the news_list_item.xml layout
@@ -73,7 +63,7 @@ public class NewsAdapter extends ArrayAdapter<News> {
         /**
          * Get the author from the current News object and set this value on the author TextView
          */
-        author.setText(headingAuthor);
+        author.setText(currentNews.getNewsAuthor());
 
         /**
          * Find the TextView in the news_list_item.xml layout
@@ -84,16 +74,22 @@ public class NewsAdapter extends ArrayAdapter<News> {
          */
         category.setText(currentNews.getNewsCategory());
 
+        String dateFormat = currentNews.getNewsDate();
+
+        if (dateFormat.contains(DATE_SEPARATOR)) {
+            String[] parts = dateFormat.split(DATE_SEPARATOR);
+            formattedDate = parts[0];
+        }
+
         /** Find the TextView in the news_list_item.xml layout */
         TextView date = (TextView) listItemView.findViewById(R.id.date);
 
-
         /** Display the date of the current news in that TextView */
-        date.setText(currentNews.getNewsDate());
+        date.setText(formattedDate);
 
         /** Return the list item view */
         return listItemView;
     }
 
-    }
+}
 
