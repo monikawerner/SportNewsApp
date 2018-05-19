@@ -11,18 +11,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.app.LoaderManager;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Loader;
 import android.widget.TextView;
 
-
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
+
 
 public class MainActivity extends AppCompatActivity implements LoaderCallbacks<List<News>> {
 

@@ -1,7 +1,5 @@
 package com.example.android.sportnewsapp;
 
-
-import android.text.TextUtils;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -20,29 +18,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Helper methods related to requesting and receiving earthquake data from USGS.
+ * Helper methods related to requesting and receiving news data from THE GUARDIAN.
  */
 public final class QueryUtils {
 
-    /** Tag for the log messages */
+    /**
+     * Tag for the log messages
+     */
     private static final String LOG_TAG = QueryUtils.class.getSimpleName();
 
-    /**
-     * Create a private constructor because no one should ever create a {@link QueryUtils} object.
-     * This class is only meant to hold static variables and methods, which can be accessed
-     * directly from the class name QueryUtils (and an object instance of QueryUtils is not needed).
-     */
     private QueryUtils() {
     }
 
     /**
-     * Query the USGS dataset and return a list of news objects.
+     * Query the THE GUARDIAN dataset and return a list of news objects.
      */
     public static List<News> fetchNewsData(String requestUrl) {
-        // Create URL object
+
         URL url = createUrl(requestUrl);
 
-        // Perform HTTP request to the URL and receive a JSON response back
         String jsonResponse = null;
         try {
             jsonResponse = makeHttpRequest(url);
@@ -50,10 +44,8 @@ public final class QueryUtils {
             Log.e(LOG_TAG, "Problem making the HTTP request.", e);
         }
 
-        // Extract relevant fields from the JSON response and create a list of news
         List<News> news = extractResultFromJSON(jsonResponse);
 
-        // Return the list of news
         return news;
     }
 
@@ -63,19 +55,16 @@ public final class QueryUtils {
      */
     private static List<News> extractResultFromJSON(String newsJSON) {
 
-        // Create an empty ArrayList that we can start adding news to
+        /** Create an empty ArrayList that we can start adding news  */
         List<News> news = new ArrayList<>();
 
-        // Try to parse the SAMPLE_JSON_RESPONSE. If there's a problem with the way the JSON
-        // is formatted, a JSONException exception object will be thrown.
-        // Catch the exception so the app doesn't crash, and print the error message to the logs.
         try {
 
             JSONObject baseJsonResponse = new JSONObject(newsJSON);
             JSONObject newsObject = baseJsonResponse.getJSONObject("response");
             JSONArray newsArray = newsObject.getJSONArray("results");
 
-            for(int i = 0; i < newsArray.length(); i++) {
+            for (int i = 0; i < newsArray.length(); i++) {
                 JSONObject currentNews = newsArray.getJSONObject(i);
                 String category = currentNews.getString("sectionName");
                 String date = currentNews.getString("webPublicationDate");
@@ -83,21 +72,15 @@ public final class QueryUtils {
                 JSONObject fields = currentNews.getJSONObject("fields");
                 String heading = fields.getString("headline");
                 String author = fields.getString("byline");
+                String image = fields.getString("thumbnail");
 
-
-                News sportNewsObject = new News(heading, author, category, date, url);
+                News sportNewsObject = new News(image, heading, author, category, date, url);
                 news.add(sportNewsObject);
             }
 
-
         } catch (JSONException e) {
-            // If an error is thrown when executing any of the above statements in the "try" block,
-            // catch the exception here, so the app doesn't crash. Print a log message
-            // with the message from the exception.
             Log.e("QueryUtils", "Problem parsing the news JSON results", e);
         }
-
-        // Return the list of news
         return news;
     }
 
@@ -120,7 +103,7 @@ public final class QueryUtils {
     private static String makeHttpRequest(URL url) throws IOException {
         String jsonResponse = "";
 
-        // If the URL is null, then return early.
+        /** If the URL is null, then return early. */
         if (url == null) {
             return jsonResponse;
         }
@@ -134,8 +117,7 @@ public final class QueryUtils {
             urlConnection.setRequestMethod("GET");
             urlConnection.connect();
 
-            // If the request was successful (response code 200),
-            // then read the input stream and parse the response.
+            /** If the request was successful (response code 200), then read the input stream and parse the response. */
             if (urlConnection.getResponseCode() == 200) {
                 inputStream = urlConnection.getInputStream();
                 jsonResponse = readFromStream(inputStream);
@@ -149,9 +131,6 @@ public final class QueryUtils {
                 urlConnection.disconnect();
             }
             if (inputStream != null) {
-                // Closing the input stream could throw an IOException, which is why
-                // the makeHttpRequest(URL url) method signature specifies than an IOException
-                // could be thrown.
                 inputStream.close();
             }
         }
