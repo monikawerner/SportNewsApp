@@ -3,7 +3,9 @@ package com.example.android.sportnewsapp;
 
 public class News {
 
-    /** Image for the news */
+    /**
+     * Image representing the news
+     */
 
     private String mNewsImage;
 
@@ -35,7 +37,7 @@ public class News {
     /**
      * Constructs a new News object
      *
-     * @param newsImage    is the image for the news
+     * @param newsImage    is the image representing the news
      * @param newsHeading  is the title of news
      * @param newsAuthor   is the author of the news
      * @param newsCategory is the category of news
@@ -51,9 +53,13 @@ public class News {
         mNewsUrl = newsUrl;
     }
 
-    /** Returns the image of the news */
+    /**
+     * Returns the image representing the news
+     */
 
-    public String getNewsImage() { return mNewsImage;}
+    public String getNewsImage() {
+        return mNewsImage;
+    }
 
     /**
      * Returns the title of the news

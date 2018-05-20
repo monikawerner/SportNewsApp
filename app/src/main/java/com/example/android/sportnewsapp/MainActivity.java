@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
         /** Create a new ArrayAdapter of news */
         mAdapter = new NewsAdapter(this, new ArrayList<News>());
 
-        /** Set the adapter on the ListView so the list can be populated in the user interface */
+        /** Set the adapter on the ListView */
         newsListView.setAdapter(mAdapter);
 
         mEmptyStateTextView = (TextView) findViewById(R.id.empty_view);
@@ -113,6 +113,4 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
     public void onLoaderReset(Loader<List<News>> loader) {
         mAdapter.clear();
     }
-
-
 }

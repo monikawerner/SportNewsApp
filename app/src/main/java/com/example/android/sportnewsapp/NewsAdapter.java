@@ -1,7 +1,6 @@
 package com.example.android.sportnewsapp;
 
 
-import android.media.Image;
 import android.widget.ArrayAdapter;
 
 import android.content.Context;
@@ -14,7 +13,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
-import java.net.URL;
 import java.util.List;
 
 public class NewsAdapter extends ArrayAdapter<News> {
@@ -52,23 +50,22 @@ public class NewsAdapter extends ArrayAdapter<News> {
          * Get the object located at this position in the list
          */
         News currentNews = getItem(position);
-        /** Find the ImageView in the news_list_item.xml layout
-         */
 
+        /**
+         * Find the ImageView in the news_list_item.xml layout
+         */
         ImageView image = (ImageView) listItemView.findViewById(R.id.image);
+
         /**
          * Get the image from the current News object and set this value on the ImageView
          */
-
-        GlideApp.with(this).load("http://goo.gl/gEgYUd").into(image);
+        Glide.with(getContext()).load(currentNews.getNewsImage()).into(image);
 
 
         /**
          * Find the TextView in the news_list_item.xml layout
          */
         TextView title = (TextView) listItemView.findViewById(R.id.title);
-
-
         /**
          * Get the title from the current News object and set this value on the title TextView
          */
