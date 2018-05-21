@@ -54,40 +54,39 @@ public class NewsAdapter extends ArrayAdapter<News> {
         /**
          * Find the ImageView in the news_list_item.xml layout
          */
-        ImageView image = (ImageView) listItemView.findViewById(R.id.image);
+        ImageView imageView = (ImageView) listItemView.findViewById(R.id.image);
 
         /**
          * Get the image from the current News object and set this value on the ImageView
          */
-        Glide.with(getContext()).load(currentNews.getNewsImage()).into(image);
-
+        Glide.with(getContext()).load(currentNews.getNewsImage()).into(imageView);
 
         /**
          * Find the TextView in the news_list_item.xml layout
          */
-        TextView title = (TextView) listItemView.findViewById(R.id.title);
+        TextView titleTextView = (TextView) listItemView.findViewById(R.id.title);
         /**
          * Get the title from the current News object and set this value on the title TextView
          */
-        title.setText(currentNews.getNewsHeading());
+        titleTextView.setText(currentNews.getNewsHeading());
 
         /**
          * Find the TextView in the news_list_item.xml layout
          */
-        TextView author = (TextView) listItemView.findViewById(R.id.author);
+        TextView authorTextView = (TextView) listItemView.findViewById(R.id.author);
         /**
          * Get the author from the current News object and set this value on the author TextView
          */
-        author.setText(currentNews.getNewsAuthor());
+        authorTextView.setText(currentNews.getNewsAuthor());
 
         /**
          * Find the TextView in the news_list_item.xml layout
          */
-        TextView category = (TextView) listItemView.findViewById(R.id.category);
+        TextView categoryTextView = (TextView) listItemView.findViewById(R.id.category);
         /**
          * Get the category from the current News object and set this value on the category TextView
          */
-        category.setText(currentNews.getNewsCategory());
+        categoryTextView.setText(currentNews.getNewsCategory());
 
         String dateFormat = currentNews.getNewsDate();
 
@@ -97,10 +96,10 @@ public class NewsAdapter extends ArrayAdapter<News> {
         }
 
         /** Find the TextView in the news_list_item.xml layout */
-        TextView date = (TextView) listItemView.findViewById(R.id.date);
+        TextView dateTextView = (TextView) listItemView.findViewById(R.id.date);
 
         /** Display the date of the current news in that TextView */
-        date.setText(formattedDate);
+        dateTextView.setText(formattedDate);
 
         /** Return the list item view */
         return listItemView;

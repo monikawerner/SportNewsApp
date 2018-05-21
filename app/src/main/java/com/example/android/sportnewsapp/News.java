@@ -4,34 +4,19 @@ package com.example.android.sportnewsapp;
 public class News {
 
     /**
-     * Image representing the news
+     * Declare variables for image, title, author, category and website url of the news.
      */
 
     private String mNewsImage;
 
-    /**
-     * Title of the news
-     */
     private String mNewsHeading;
 
-    /**
-     * Author of the news
-     */
     private String mNewsAuthor;
 
-    /**
-     * Category of the news
-     */
     private String mNewsCategory;
 
-    /**
-     * Date of the news
-     */
     private String mNewsDate;
 
-    /**
-     * Website url of the news
-     */
     private String mNewsUrl;
 
     /**
@@ -53,48 +38,28 @@ public class News {
         mNewsUrl = newsUrl;
     }
 
-    /**
-     * Returns the image representing the news
-     */
-
     public String getNewsImage() {
         return mNewsImage;
     }
 
-    /**
-     * Returns the title of the news
-     */
     public String getNewsHeading() {
         return mNewsHeading;
     }
 
-    /**
-     * Returns the author of the news
-     */
     public String getNewsAuthor() {
         return mNewsAuthor;
     }
 
-    /**
-     * Returns the category of the news
-     */
     public String getNewsCategory() {
         return mNewsCategory;
     }
 
-    /**
-     * Returns the date of the news
-     */
     public String getNewsDate() {
         return mNewsDate;
     }
 
-    /**
-     * Returns the website of the news
-     */
     public String getNewsUrl() {
         return mNewsUrl;
     }
-
 
 }
