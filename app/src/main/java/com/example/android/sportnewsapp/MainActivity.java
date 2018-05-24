@@ -29,8 +29,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
 
 
     private static final int NEWS_LOADER_ID = 1;
-    private static final String REQUEST_URL = "http://content.guardianapis.com/search?order-by=newest&show-fields=all&q=%22sport%20news%22&api-key=43fb3797-5f78-4490-a728-ed516d9a936d";
-
+    private static final String REQUEST_URL = "http://content.guardianapis.com/search?";
     /**
      * TextView that is displayed when the list is empty
      */
@@ -93,9 +92,23 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
 
     @Override
     public Loader<List<News>> onCreateLoader(int i, Bundle bundle) {
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        String orderBy  = sharedPrefs.getString(
+                getString(R.string.settings_order_by_key),
+                getString(R.string.settings_order_by_default)
+        );
+        String productionOffice = sharedPrefs.getString(
+                getString(R.string.settings_production_office_key),
+                getString(R.string.settings_production_office_default));
 
-
-        return new NewsLoader(this, REQUEST_URL);
+        Uri baseUri = Uri.parse(REQUEST_URL);
+        Uri.Builder uriBuilder = baseUri.buildUpon();
+        // Append query parameter and its value.
+        uriBuilder.appendQueryParameter("production-office", productionOffice);
+        uriBuilder.appendQueryParameter("order-by", orderBy);
+        uriBuilder.appendQueryParameter("show-fields", "all");
+        uriBuilder.appendQueryParameter("q", "sport news");
+        return new NewsLoader(this, uriBuilder.toString());
     }
 
     @Override

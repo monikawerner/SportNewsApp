@@ -55,6 +55,7 @@ public final class QueryUtils {
      */
     private static List<News> extractResultFromJSON(String newsJSON) {
 
+        Log.v("my_tag", "JSON response is: "+newsJSON);
         /** Create an empty ArrayList that we can start adding news  */
         List<News> news = new ArrayList<>();
 
