@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
 
 
     private static final int NEWS_LOADER_ID = 1;
-    private static final String REQUEST_URL = "http://content.guardianapis.com/search?";
+    private static final String REQUEST_URL = "https://content.guardianapis.com/search?";
     /**
      * TextView that is displayed when the list is empty
      */
@@ -108,6 +109,8 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
         uriBuilder.appendQueryParameter("order-by", orderBy);
         uriBuilder.appendQueryParameter("show-fields", "all");
         uriBuilder.appendQueryParameter("q", "sport news");
+        uriBuilder.appendQueryParameter("api-key", "43fb3797-5f78-4490-a728-ed516d9a936d");
+        Log.v("my_tag", "url created is:"+uriBuilder.toString());
         return new NewsLoader(this, uriBuilder.toString());
     }
 
