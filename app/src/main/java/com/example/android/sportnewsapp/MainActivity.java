@@ -50,10 +50,8 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
         /** Find a reference to the ListView in the layout */
         ListView newsListView = (ListView) findViewById(R.id.list);
 
-        /** Create a new ArrayAdapter of news */
+        /** Create a new ArrayAdapter of news and set it on the ListView*/
         mAdapter = new NewsAdapter(this, new ArrayList<News>());
-
-        /** Set the adapter on the ListView */
         newsListView.setAdapter(mAdapter);
 
         mEmptyStateTextView = (TextView) findViewById(R.id.empty_view);
@@ -94,7 +92,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
     @Override
     public Loader<List<News>> onCreateLoader(int i, Bundle bundle) {
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-        String orderBy  = sharedPrefs.getString(
+        String orderBy = sharedPrefs.getString(
                 getString(R.string.settings_order_by_key),
                 getString(R.string.settings_order_by_default)
         );
@@ -110,7 +108,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
         uriBuilder.appendQueryParameter("show-fields", "all");
         uriBuilder.appendQueryParameter("q", "sport news");
         uriBuilder.appendQueryParameter("api-key", "43fb3797-5f78-4490-a728-ed516d9a936d");
-        Log.v("my_tag", "url created is:"+uriBuilder.toString());
+        Log.v("my_tag", "url created is:" + uriBuilder.toString());
         return new NewsLoader(this, uriBuilder.toString());
     }
 
