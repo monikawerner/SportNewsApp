@@ -54,7 +54,7 @@ public class NewsAdapter extends ArrayAdapter<News> {
         /**
          * Find the ImageView in the news_list_item.xml layout
          */
-        ImageView imageView = (ImageView) listItemView.findViewById(R.id.image);
+        ImageView imageView = listItemView.findViewById(R.id.image);
 
         /**
          * Get the image from the current News object and set this value on the ImageView
@@ -64,7 +64,7 @@ public class NewsAdapter extends ArrayAdapter<News> {
         /**
          * Find the TextView in the news_list_item.xml layout
          */
-        TextView titleTextView = (TextView) listItemView.findViewById(R.id.title);
+        TextView titleTextView = listItemView.findViewById(R.id.title);
         /**
          * Get the title from the current News object and set this value on the title TextView
          */
@@ -73,7 +73,7 @@ public class NewsAdapter extends ArrayAdapter<News> {
         /**
          * Find the TextView in the news_list_item.xml layout
          */
-        TextView authorTextView = (TextView) listItemView.findViewById(R.id.author);
+        TextView authorTextView = listItemView.findViewById(R.id.author);
         /**
          * Get the author from the current News object and set this value on the author TextView
          */
@@ -82,7 +82,7 @@ public class NewsAdapter extends ArrayAdapter<News> {
         /**
          * Find the TextView in the news_list_item.xml layout
          */
-        TextView categoryTextView = (TextView) listItemView.findViewById(R.id.category);
+        TextView categoryTextView = listItemView.findViewById(R.id.category);
         /**
          * Get the category from the current News object and set this value on the category TextView
          */
@@ -96,7 +96,7 @@ public class NewsAdapter extends ArrayAdapter<News> {
         }
 
         /** Find the TextView in the news_list_item.xml layout */
-        TextView dateTextView = (TextView) listItemView.findViewById(R.id.date);
+        TextView dateTextView = listItemView.findViewById(R.id.date);
 
         /** Display the date of the current news in that TextView */
         dateTextView.setText(formattedDate);

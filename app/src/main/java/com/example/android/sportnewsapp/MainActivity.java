@@ -48,13 +48,13 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
 
 
         /** Find a reference to the ListView in the layout */
-        ListView newsListView = (ListView) findViewById(R.id.list);
+        ListView newsListView = findViewById(R.id.list);
 
         /** Create a new ArrayAdapter of news and set it on the ListView*/
         mAdapter = new NewsAdapter(this, new ArrayList<News>());
         newsListView.setAdapter(mAdapter);
 
-        mEmptyStateTextView = (TextView) findViewById(R.id.empty_view);
+        mEmptyStateTextView = findViewById(R.id.empty_view);
         newsListView.setEmptyView(mEmptyStateTextView);
 
         /** Set an item click listener on the ListView, which sends an intent to a web browser to open a website with more information about the selected news */

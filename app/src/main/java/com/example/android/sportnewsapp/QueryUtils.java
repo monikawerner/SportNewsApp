@@ -26,6 +26,7 @@ public final class QueryUtils {
      * Tag for the log messages
      */
     private static final String LOG_TAG = QueryUtils.class.getSimpleName();
+    private static final int SUCCESS_CODE = 200;
 
     private QueryUtils() {
     }
@@ -118,7 +119,7 @@ public final class QueryUtils {
             urlConnection.connect();
 
             /** If the request was successful (response code 200), then read the input stream and parse the response. */
-            if (urlConnection.getResponseCode() == 200) {
+            if (urlConnection.getResponseCode() == SUCCESS_CODE) {
                 inputStream = urlConnection.getInputStream();
                 jsonResponse = readFromStream(inputStream);
             } else {
